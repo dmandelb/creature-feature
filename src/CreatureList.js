@@ -1,5 +1,6 @@
 import './CreatureList.css';
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class CreatureList extends Component {
   state = { 
@@ -16,7 +17,9 @@ class CreatureList extends Component {
     return (
       <div>
         <h1>Creature Feature</h1>
-        
+        <ul className='list-group'>
+          {this.state.creatures.map((creature)=><li className='list-group-item' key={creature.index}>{creature.index}</li>)}
+        </ul>
       </div>
     );
   }
