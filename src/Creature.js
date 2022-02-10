@@ -5,9 +5,11 @@ class Creature extends Component {
   render() { 
     return (
       <li className='list-group-item'>
-        <span className=''></span>
+        <span className='font-weight-bold'>Name: </span>
         {this.props.creature.name}
+        
         </li>
+        
     );
   }
 }
