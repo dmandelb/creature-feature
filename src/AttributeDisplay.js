@@ -1,7 +1,6 @@
 function AttributeDisplay(props) {
   return ( 
-    <div className="col-sm">
-      <span className="font-weight-bold">{props.title}: </span>
+    <div className="col-sm text-center">
       {props.value}
     </div>
    );
