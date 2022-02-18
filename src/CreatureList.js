@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import Creature from './Creature';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreatureList.css';
+import { ListGroup, ListGroupItem} from 'react-bootstrap';
+import Creature from './Creature';
 
 class CreatureList extends Component {
   constructor(){
@@ -24,18 +25,18 @@ class CreatureList extends Component {
     return (
       <div>
         <header>
-        <h1>Creature Feature</h1>
+        <h1 className='title'>Creature Feature</h1>
         </header>
-        <ul id='creatureList' className='list-group container'>
-          <li className='list-group-item sticky'>
+        <ListGroup id='creatureList' className='container'>
+          <ListGroupItem id='sticky'>
             <div className='row'>
               <span className='col-sm font-weight-bold text-center'>Name</span>
               <span className='col-sm font-weight-bold text-center'>CR</span>
               <span className='col-sm font-weight-bold text-center'>Type</span>
             </div>
-          </li>
+          </ListGroupItem>
           {this.state.creatures.length > 0? this.state.creatures.map((creature)=> <Creature key={creature.slug} creature={creature} />) : this.loading }
-        </ul>
+        </ListGroup>
       </div>
     );
   }

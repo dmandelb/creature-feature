@@ -5,7 +5,7 @@ header{
   width: 100%;
   z-index: 10;
 }
-h1 {
+h1.title {
   color: #ff0000;
   font-size: 3rem;
   line-height: 1;
@@ -15,7 +15,7 @@ h1 {
 #creatureList {
   margin-top: 5rem;
 }
-.sticky{
+#sticky{
   position: sticky;
   top: 5rem;
   z-index: 10;
