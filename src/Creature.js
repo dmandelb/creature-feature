@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import AttributeDisplay from './AttributeDisplay';
+import './Creature.css';
 
 class Creature extends Component {
   constructor(){
@@ -14,44 +16,52 @@ class Creature extends Component {
   render() { 
     return (
       <li className='list-group-item'>
-        <div className='row'>
+        <Row>
           <AttributeDisplay title="Name" value={this.props.creature.name}/>
           <AttributeDisplay title="CR" value={this.props.creature.challenge_rating}/>
           <AttributeDisplay title="Type" value={this.props.creature.type}/>
-        </div>
-        <div className='card'>
-          <div className='card-body container'>
-            <div className='card-title col-12'>
-              <h4>{this.props.creature.name}</h4>
-              <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}</p>
-            </div>
-            <div className='col-6'>
-              <label>Challenge Rating:</label> {this.props.creature.challenge_rating}
-              <label>Armor Class:</label> {this.props.creature.armor_class}
-            </div>
-            <div className='col-6'>
-              { this.props.creature.actions &&
-              <div>
-                <h5>Actions</h5>
-                {this.displayAbilities(this.props.creature.actions)}
-              </div>
-              }
-              { this.props.creature.reactions &&
-              <div>
-                <h5>Reactions</h5>
-                {this.displayAbilities(this.props.creature.reactions)}
-              </div>
-              }
-              { this.props.creature.legendary_actions &&
-              <div>
-                <h5>Legendary Actions</h5>
-                {this.displayAbilities(this.props.creature.legendary_actions)}
-              </div>
-              }
-              
-            </div>
-          </div>
-        </div>
+        </Row>
+        <Card>
+          <Card.Body>
+            <Container>
+              <Row>
+                <Card.Title>
+                  <h4>{this.props.creature.name}</h4>
+                </Card.Title>
+                <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}</p>
+              </Row>
+              <Row>
+              <Col>
+                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}
+                <label>Armor Class:</label> {this.props.creature.armor_class}
+              </Col>
+              <Col>
+                { this.props.creature.actions &&
+                <div>
+                  <h5>Actions</h5>
+                  {this.displayAbilities(this.props.creature.actions)}
+                </div>
+                }
+                { this.props.creature.reactions &&
+                <div>
+                  <hr className='divider'/>
+                  <h5>Reactions</h5>
+                  {this.displayAbilities(this.props.creature.reactions)}
+                </div>
+                }
+                { this.props.creature.legendary_actions &&
+                <div>
+                  <hr className='divider'/>
+                  <h5>Legendary Actions</h5>
+                  {this.displayAbilities(this.props.creature.legendary_actions)}
+                </div>
+                }
+                
+              </Col>
+              </Row>
+            </Container>
+          </Card.Body>
+        </Card>
         </li>
         
     );
