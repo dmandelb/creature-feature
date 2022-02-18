@@ -1,0 +1,13 @@
+label{
+  font-weight: bold;
+}
+
+div.card {
+  background-color: antiquewhite;
+}
+
+hr.divider {
+  border: 0;
+  height: 3px;
+  background-image: linear-gradient(to right, rgb(128,0,0), rgb(255,255,255));
+}
