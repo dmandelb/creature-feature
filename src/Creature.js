@@ -79,6 +79,12 @@ class Creature extends Component {
                     </tr>
                   </tbody>
                 </Table>
+                <hr/>
+                { this.props.creature.special_abilities &&
+                  <div>
+                    {this.displayAbilities(this.props.creature.special_abilities)}
+                  </div>
+                }
               </Col>
               <Col>
                 { this.props.creature.actions &&
