@@ -8,6 +8,7 @@ class Creature extends Component {
     super();
     this.displayAbilities = this.displayAbilities.bind(this);
     this.calculateMod = this.calculateMod.bind(this);
+    this.displaySpeed = this.displaySpeed.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -23,6 +24,16 @@ class Creature extends Component {
       strVal = numVal.toString();
     }
     return strVal;
+  }
+  displaySpeed(){
+    let speedStr = `${this.props.creature.speed.walk} ft.`;
+    let speedTypes = ['burrow', 'climb', 'fly', 'swim'];
+    for (let i = 0; i < speedTypes.length; i++) {
+      if (this.props.creature.speed[speedTypes[i]]) {
+        speedStr += `, ${speedTypes[i]} ${this.props.creature.speed[speedTypes[i]]} ft.`
+      }
+    }
+    return speedStr;
   }
   render() { 
     return (
@@ -43,8 +54,9 @@ class Creature extends Component {
               </Row>
               <Row>
               <Col>
-                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}
-                <label>Armor Class:</label> {this.props.creature.armor_class}
+                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}<br/>
+                <label>Armor Class:</label> {this.props.creature.armor_class}<br/>
+                <label>Speed:</label> {this.displaySpeed()}
                 <Table>
                   <thead>
                     <tr>
