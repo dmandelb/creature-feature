@@ -9,6 +9,7 @@ class Creature extends Component {
     this.displayAbilities = this.displayAbilities.bind(this);
     this.calculateMod = this.calculateMod.bind(this);
     this.displaySpeed = this.displaySpeed.bind(this);
+    this.displaySkills = this.displaySkills.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -87,6 +88,11 @@ class Creature extends Component {
                 { this.props.creature.skills &&
                   <div>
                     <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
+                  </div>
+                }
+                { this.props.creature.senses &&
+                  <div>
+                    <label>Senses:</label> {this.props.creature.senses}
                   </div>
                 }
                 <hr/>
