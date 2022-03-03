@@ -35,6 +35,11 @@ class Creature extends Component {
     }
     return speedStr;
   }
+  displaySkills(skillsObj){
+    return Object.entries(skillsObj).map((subArr)=>{
+      return `${subArr[0].charAt(0).toUpperCase()+subArr[0].slice(1)} +${subArr[1]} `
+    }).join(', ')
+  }
   render() { 
     return (
       <li className='list-group-item'>
@@ -79,6 +84,11 @@ class Creature extends Component {
                     </tr>
                   </tbody>
                 </Table>
+                { this.props.creature.skills &&
+                  <div>
+                    <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
+                  </div>
+                }
                 <hr/>
                 { this.props.creature.special_abilities &&
                   <div>
