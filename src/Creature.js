@@ -132,10 +132,15 @@ class Creature extends Component {
                     <label>Senses:</label> {this.props.creature.senses}
                   </div>
                 }
+                { this.props.creature.languages &&
+                  <div>
+                    <label>Languages:</label> {this.props.creature.languages}
+                  </div>
+                }
                 <div>
                   <label>Proficiency Bonus:</label> {this.state.proficiency[this.props.creature.challenge_rating]}
                 </div>
-                <hr/>
+                <hr className='divider'/>
                 { this.props.creature.special_abilities &&
                   <div>
                     {this.displayAbilities(this.props.creature.special_abilities)}
@@ -145,21 +150,28 @@ class Creature extends Component {
               <Col>
                 { this.props.creature.actions &&
                 <div>
-                  <h5>Actions</h5>
+                  <h5 className='actiontitle'>
+                    Actions
+                    <hr/>
+                  </h5>
                   {this.displayAbilities(this.props.creature.actions)}
                 </div>
                 }
                 { this.props.creature.reactions &&
                 <div>
-                  <hr className='divider'/>
-                  <h5>Reactions</h5>
+                  <h5 className='actiontitle'>
+                    Reactions
+                    <hr/>
+                  </h5>
                   {this.displayAbilities(this.props.creature.reactions)}
                 </div>
                 }
                 { this.props.creature.legendary_actions &&
                 <div>
-                  <hr className='divider'/>
-                  <h5>Legendary Actions</h5>
+                  <h5 className='actiontitle'>
+                    Legendary Actions
+                    <hr/>
+                  </h5>
                   {this.displayAbilities(this.props.creature.legendary_actions)}
                 </div>
                 }
