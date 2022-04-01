@@ -11,3 +11,10 @@ hr.divider {
   height: 3px;
   background-image: linear-gradient(to right, rgb(128,0,0), rgb(255,255,255));
 }
+.actiontitle {
+  color: rgb(128,0,0);
+}
+.actiontitle hr {
+  margin-top: 0;
+  opacity: 1;
+}
