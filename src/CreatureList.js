@@ -8,7 +8,14 @@ class CreatureList extends Component {
   constructor(){
     super()
     this.state = {
-      creatures: []
+      creatures: [],
+      filters: {
+        alignment: null,
+        challenge_rating_minimum: null,
+        challenge_rating_maximum: null,
+        size: null,
+        type: null
+      }
     }
     this.loading = <p>Nat 20 on stealth, you get a surprise round!</p>;
   }
@@ -21,6 +28,12 @@ class CreatureList extends Component {
        this.setState({creatures: data.results});
      })
    }
+    // each filter when applied sets a filter state (object of applied filters)
+      // Object contains filter names as keys, null as empty values allowing for a variety of value types
+    // Filters must stack
+    //  Applying a filter triggers a re-render
+    // ListGroup calls a handler function instead of accessing state directly
+    // handler function returns a filtered version of creatures state without modifying existing state
   render() { 
     return (
       <div>
