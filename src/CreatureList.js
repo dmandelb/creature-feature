@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreatureList.css';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import Creature from './Creature';
+import Filter from './Filter';
 
 class CreatureList extends Component {
   constructor(){
@@ -17,10 +18,32 @@ class CreatureList extends Component {
         type: null
       }
     }
+    this.applyFilters = this.applyFilters.bind(this);
+    this.filterCreatures = this.filterCreatures.bind(this);
     this.loading = <p>Nat 20 on stealth, you get a surprise round!</p>;
   }
+
+  applyFilters(filterObj){
+    let modifiedFilterState = {...this.state};
+    modifiedFilterState.filters = filterObj;
+    this.setState(modifiedFilterState);
+    // receive object with filters from Filter component, change state
+  }
   
-   
+  filterByType(creatureArr){
+    if (this.state.filters.type) {
+      return creatureArr.filter(creature => creature.type == this.state.filters.type);
+    } else {
+      return creatureArr;
+    }
+  }
+  
+  filterCreatures(){
+    let filteredCreatures = [...this.state.creatures];
+    filteredCreatures = this.filterByType(filteredCreatures);
+    return filteredCreatures; //create tumbeast for 0 results
+  }
+
    componentDidMount(){
      fetch('https://api.open5e.com/monsters/?document__slug=wotc-srd&limit=322')
      .then(response=> response.json())
@@ -38,8 +61,9 @@ class CreatureList extends Component {
     return (
       <div>
         <header>
-        <h1 className='title'>Creature Feature</h1>
+        {/* <h1 className='title'>Creature Feature</h1> */}
         </header>
+        <Filter applyFilters={this.applyFilters} currentFilters={this.state.filters}/>
         <ListGroup id='creatureList' className='container'>
           <ListGroupItem id='sticky'>
             <div className='row'>
@@ -48,7 +72,7 @@ class CreatureList extends Component {
               <span className='col-sm font-weight-bold text-center'>Type</span>
             </div>
           </ListGroupItem>
-          {this.state.creatures.length > 0? this.state.creatures.map((creature)=> <Creature key={creature.slug} creature={creature} />) : this.loading }
+          {this.state.creatures.length > 0? this.filterCreatures().map((creature)=> <Creature key={creature.slug} creature={creature} />) : this.loading }
         </ListGroup>
       </div>
     );

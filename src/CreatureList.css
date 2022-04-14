@@ -12,9 +12,9 @@ h1.title {
   padding: 1rem 1rem;
   margin: 0;
 }
-#creatureList {
+/* #creatureList {
   margin-top: 5rem;
-}
+} */
 #sticky{
   position: sticky;
   top: 5rem;
