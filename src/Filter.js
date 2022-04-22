@@ -57,6 +57,18 @@ class Filter extends Component {
               <option value="undead">Undead</option>
             </Form.Select>
           </Form.Group>
+          <Form.Group>
+            <Form.Label htmlFor="size">Size</Form.Label>
+            <Form.Select name="size" aria-label='Select Size' onChange={this.handleFilterSet}>
+              <option value=''>All Sizes</option>
+              <option value='tiny'>Tiny</option>
+              <option value='small'>Small</option>
+              <option value='medium'>Medium</option>
+              <option value='large'>Large</option>
+              <option value='huge'>Huge</option>
+              <option value='gargantuan'>Gargantuan</option>
+            </Form.Select>
+          </Form.Group>
           <Button type="submit">Apply Filters</Button>
         </Form>
       </Container>
