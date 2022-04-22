@@ -39,8 +39,14 @@ class CreatureList extends Component {
   }
   
   filterCreatures(){
-    let filteredCreatures = [...this.state.creatures];
-    filteredCreatures = this.filterByCriteria('type', filteredCreatures);
+    let filteredCreatures = [...this.state.creatures]; // create a copy of creatures in state so as to not require a new API call every time filters are changed
+    let activeFilters = Object.entries({...this.state.filters}).filter(singleFilter => singleFilter[1] !== null); // determine which filters are active so we can apply only active filters
+    if (activeFilters.length > 0) {
+      for (let [singleActiveFilter, filterValue] of activeFilters) {
+        filteredCreatures = this.filterByCriteria(singleActiveFilter, filteredCreatures);
+      }
+    } // apply only each active filter
+    
     return filteredCreatures; //create tumbeast for 0 results
   }
 
