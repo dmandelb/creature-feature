@@ -30,9 +30,9 @@ class CreatureList extends Component {
     // receive object with filters from Filter component, change state
   }
   
-  filterByType(creatureArr){
-    if (this.state.filters.type) {
-      return creatureArr.filter(creature => creature.type == this.state.filters.type);
+  filterByCriteria(criteria, creatureArr){
+    if (this.state.filters[criteria]) {
+      return creatureArr.filter(creature => creature[criteria] == this.state.filters[criteria]);
     } else {
       return creatureArr;
     }
@@ -40,7 +40,7 @@ class CreatureList extends Component {
   
   filterCreatures(){
     let filteredCreatures = [...this.state.creatures];
-    filteredCreatures = this.filterByType(filteredCreatures);
+    filteredCreatures = this.filterByCriteria('type', filteredCreatures);
     return filteredCreatures; //create tumbeast for 0 results
   }
 
