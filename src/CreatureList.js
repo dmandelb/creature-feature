@@ -102,7 +102,7 @@ class CreatureList extends Component {
       "1/4": 0.25,
       "1/2": 0.5
     }
-    if (challengeRating.length > 2) {
+    if (challengeRating.includes('/')) {
       return fractionConverter[challengeRating];
     } else {
       return parseInt(challengeRating);
