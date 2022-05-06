@@ -95,12 +95,27 @@ class CreatureList extends Component {
     this.setState(modifiedFilterState);
     // receive object with filters from Filter component, change state
   }
+
+  standardizeChallengeRating(challengeRating){
+    let fractionConverter = {
+      "1/8": 0.125,
+      "1/4": 0.25,
+      "1/2": 0.5
+    }
+    if (challengeRating.length > 2) {
+      return fractionConverter[challengeRating];
+    } else {
+      return parseInt(challengeRating);
+    }
+  }
   
   filterByCriteria(criteria, creatureArr){
-    if (this.state.filters[criteria]) {
-      return creatureArr.filter(creature => creature[criteria] == this.state.filters[criteria]);
+    if (criteria === "challenge_rating_minimum") {
+      return creatureArr.filter(creature => this.standardizeChallengeRating(creature.challenge_rating) >= this.standardizeChallengeRating(this.state.filters.challenge_rating_minimum));
+    } else if(criteria === "challenge_rating_maximum"){
+      return creatureArr.filter(creature=> this.standardizeChallengeRating(creature.challenge_rating) <= this.standardizeChallengeRating(this.state.filters.challenge_rating_maximum));
     } else {
-      return creatureArr;
+      return creatureArr.filter(creature => creature[criteria] === this.state.filters[criteria]);
     }
   }
   
