@@ -16,7 +16,73 @@ class CreatureList extends Component {
         challenge_rating_maximum: null,
         size: null,
         type: null
-      }
+      },
+      tumbeast: [{
+        "slug": "tumbeast",
+        "name": "Tumbeast",
+        "size": "Knee-height",
+        "type": "hellsite (affectionate) dweller",
+        "subtype": "",
+        "group": null,
+        "alignment": "chaotic hungry",
+        "armor_class": 10,
+        "armor_desc": "oatmeal",
+        "hit_points": 503,
+        "hit_dice": "118d6+90",
+        "speed": {
+            "walk": 50,
+            "climb": 50,
+        },
+        "strength": 12,
+        "dexterity": 14,
+        "constitution": 8,
+        "intelligence": 1,
+        "wisdom": 12,
+        "charisma": 16,
+        "strength_save": null,
+        "dexterity_save": null,
+        "constitution_save": null,
+        "intelligence_save": null,
+        "wisdom_save": null,
+        "charisma_save": null,
+        "perception": null,
+        "skills": {
+            "acrobatics": 4
+        },
+        "damage_vulnerabilities": "emotional",
+        "damage_resistances": "",
+        "damage_immunities": "psychic",
+        "condition_immunities": "charmed, frightened",
+        "senses": "passive Perception 12",
+        "languages": "unsure, it doesn't seem to respond to anything",
+        "challenge_rating": "-1",
+        "actions": [
+            {
+                "attack_bonus": 4,
+                "damage_dice": "3d8+6",
+                "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 4 (1d4 + 2) piercing damage.",
+                "name": "Gnawing"
+            },
+            {
+                "desc": "When Tumbeasts are not fed regularly, they band together and openly rebel in the server rooms which they call home, declaring anything they can get their tiny little paws on as viable food.",
+                "name": "Mutiny"
+            }
+        ],
+        "reactions": "",
+        "legendary_desc": "",
+        "legendary_actions": "",
+        "special_abilities": [
+            {
+                "desc": "The elusive Tumbeast only shows up when there are no other results. Your filters found nothing.",
+                "name": "Nothing Here"
+            }
+        ],
+        "spell_list": [],
+        "img_main": null,
+        "document__slug": "",
+        "document__title": "",
+        "document__license_url": ""
+    }]
     }
     this.applyFilters = this.applyFilters.bind(this);
     this.filterCreatures = this.filterCreatures.bind(this);
@@ -47,7 +113,8 @@ class CreatureList extends Component {
       }
     } // apply only each active filter
     
-    return filteredCreatures; //create tumbeast for 0 results
+    // return filteredCreatures; //create tumbeast for 0 results
+    return(filteredCreatures.length ? filteredCreatures : this.state.tumbeast) ;
   }
 
    componentDidMount(){
