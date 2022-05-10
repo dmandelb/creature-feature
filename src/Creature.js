@@ -86,12 +86,12 @@ class Creature extends Component {
   }
   displaySaves(){
     let savesObj = {
-      CHA: 'charisma_save',
-      CON: 'constitution_save',
-      DEX: 'dexterity_save',
-      INT: 'intelligence_save',
       STR: 'strength_save',
-      WIS: 'wisdom_save'
+      DEX: 'dexterity_save',
+      CON: 'constitution_save',
+      INT: 'intelligence_save',
+      WIS: 'wisdom_save',
+      CHA: 'charisma_save'
     }
     Object.keys(savesObj).forEach((saveAbbr)=>{
       this.props.creature[savesObj[saveAbbr]] ? savesObj[saveAbbr] = this.props.creature[savesObj[saveAbbr]] : delete savesObj[saveAbbr];
