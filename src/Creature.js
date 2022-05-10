@@ -11,6 +11,7 @@ class Creature extends Component {
         '0': '+2',
         '1/8': '+2',
         '1/4': '+2',
+        '1/2': '+2',
         '1': '+2',
         '2': '+2',
         '3': '+2',
@@ -93,12 +94,16 @@ class Creature extends Component {
                 <Card.Title>
                   <h4>{this.props.creature.name}</h4>
                 </Card.Title>
-                <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}</p>
+                <Col>
+                <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}<br/>
+                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}</p>
+                <hr className='divider'/>
+                </Col>
               </Row>
               <Row>
               <Col>
-                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}<br/>
                 <label>Armor Class:</label> {this.props.creature.armor_class}<br/>
+                <label>Hit Points:</label> {this.props.creature.hit_points + ' (' + this.props.creature.hit_dice + ')'}<br/>
                 <label>Speed:</label> {this.displaySpeed()}
                 <Table>
                   <thead>
@@ -122,7 +127,7 @@ class Creature extends Component {
                     </tr>
                   </tbody>
                 </Table>
-                { this.props.creature.skills.length &&
+                { Object.keys(this.props.creature.skills).length > 0 &&
                   <div>
                     <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
                   </div>
@@ -172,6 +177,7 @@ class Creature extends Component {
                     Legendary Actions
                     <hr/>
                   </h5>
+                  <p>{this.props.creature.legendary_desc}</p>
                   {this.displayAbilities(this.props.creature.legendary_actions)}
                 </div>
                 }
