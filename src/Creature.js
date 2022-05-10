@@ -132,6 +132,26 @@ class Creature extends Component {
                     <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
                   </div>
                 }
+                { this.props.creature.condition_immunities &&
+                  <div>
+                    <label>Condition Immunities:</label> {this.props.creature.condition_immunities}
+                  </div>
+                }
+                { this.props.creature.damage_immunities &&
+                  <div>
+                    <label>Damage Immunities:</label> {this.props.creature.damage_immunities}
+                  </div>
+                }
+                { this.props.creature.damage_resistances &&
+                  <div>
+                    <label>Damage Resistances:</label> {this.props.creature.damage_resistances}
+                  </div>
+                }
+                { this.props.creature.damage_vulnerabilities &&
+                  <div>
+                    <label>Damage Vulnerabilities:</label> {this.props.creature.damage_vulnerabilities}
+                  </div>
+                }
                 { this.props.creature.senses &&
                   <div>
                     <label>Senses:</label> {this.props.creature.senses}
