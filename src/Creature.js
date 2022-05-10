@@ -48,6 +48,8 @@ class Creature extends Component {
     this.calculateMod = this.calculateMod.bind(this);
     this.displaySpeed = this.displaySpeed.bind(this);
     this.displaySkills = this.displaySkills.bind(this);
+    this.savesCheck = this.savesCheck.bind(this);
+    this.displaySaves = this.displaySaves.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -78,6 +80,23 @@ class Creature extends Component {
     return Object.entries(skillsObj).map((subArr)=>{
       return `${subArr[0].charAt(0).toUpperCase()+subArr[0].slice(1)} +${subArr[1]} `
     }).join(', ')
+  }
+  savesCheck(){
+    return this.props.creature.charisma_save || this.props.creature.constitution_save || this.props.creature.dexterity_save || this.props.creature.intelligence_save || this.props.creature.strength_save || this.props.creature.wisdom_save;
+  }
+  displaySaves(){
+    let savesObj = {
+      CHA: 'charisma_save',
+      CON: 'constitution_save',
+      DEX: 'dexterity_save',
+      INT: 'intelligence_save',
+      STR: 'strength_save',
+      WIS: 'wisdom_save'
+    }
+    Object.keys(savesObj).forEach((saveAbbr)=>{
+      this.props.creature[savesObj[saveAbbr]] ? savesObj[saveAbbr] = this.props.creature[savesObj[saveAbbr]] : delete savesObj[saveAbbr];
+    })
+    return this.displaySkills(savesObj);
   }
   render() { 
     return (
@@ -127,6 +146,11 @@ class Creature extends Component {
                     </tr>
                   </tbody>
                 </Table>
+                { this.savesCheck() &&
+                  <div>
+                    <label>Saving Throws:</label> {this.displaySaves()}
+                  </div>
+                }
                 { Object.keys(this.props.creature.skills).length > 0 &&
                   <div>
                     <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
