@@ -7,6 +7,7 @@ class Creature extends Component {
   constructor(){
     super();
     this.state = {
+      cardDisplay: 'none',
       proficiency: {
         '0': '+2',
         '1/8': '+2',
@@ -50,6 +51,7 @@ class Creature extends Component {
     this.displaySkills = this.displaySkills.bind(this);
     this.savesCheck = this.savesCheck.bind(this);
     this.displaySaves = this.displaySaves.bind(this);
+    this.toggleCardDisplay = this.toggleCardDisplay.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -98,15 +100,20 @@ class Creature extends Component {
     })
     return this.displaySkills(savesObj);
   }
+  toggleCardDisplay(){
+    let newDisplay = (this.state.cardDisplay === 'none'? 'flex': 'none');
+    console.log(newDisplay);
+    this.setState({cardDisplay: newDisplay});
+  }
   render() { 
     return (
-      <li className='list-group-item'>
+      <li className='list-group-item' onClick={()=>{this.toggleCardDisplay()}}>
         <Row>
           <AttributeDisplay title="Name" value={this.props.creature.name}/>
           <AttributeDisplay title="CR" value={this.props.creature.challenge_rating}/>
           <AttributeDisplay title="Type" value={this.props.creature.type}/>
         </Row>
-        <Card>
+        <Card style={{display: this.state.cardDisplay}}>
           <Card.Body>
             <Container>
               <Row>
