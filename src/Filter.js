@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-
+import './Filter.css';
 
 class Filter extends Component {
   constructor(){
@@ -20,7 +20,6 @@ class Filter extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    // this.props.currentFilters != this.state.filters ? this.props.applyFilters(this.state.filters) : alert("These filters are already applied.");
     this.props.applyFilters(this.state.filters);
   }
 
@@ -30,12 +29,11 @@ class Filter extends Component {
     event.target.value === '' ? filterVal = null : filterVal = event.target.value;
     let newFilters = {...this.state.filters};
     newFilters[filterName] = filterVal;
-    // console.log(event.target.name);
     this.setState({filters: newFilters});
   }
   render() { 
     return (
-      <Container>
+      <Container id='filters'>
         <Form className="filterForm" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label htmlFor="type">Creature Type</Form.Label>

@@ -149,7 +149,7 @@ class CreatureList extends Component {
     return (
       <div>
         <header>
-        {/* <h1 className='title'>Creature Feature</h1> */}
+        <h1 className='title'>Creature Feature</h1>
         </header>
         <Filter applyFilters={this.applyFilters} currentFilters={this.state.filters}/>
         <ListGroup id='creatureList' className='container'>

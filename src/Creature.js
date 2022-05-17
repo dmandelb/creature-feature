@@ -7,10 +7,12 @@ class Creature extends Component {
   constructor(){
     super();
     this.state = {
+      cardDisplay: 'none',
       proficiency: {
         '0': '+2',
         '1/8': '+2',
         '1/4': '+2',
+        '1/2': '+2',
         '1': '+2',
         '2': '+2',
         '3': '+2',
@@ -47,6 +49,9 @@ class Creature extends Component {
     this.calculateMod = this.calculateMod.bind(this);
     this.displaySpeed = this.displaySpeed.bind(this);
     this.displaySkills = this.displaySkills.bind(this);
+    this.savesCheck = this.savesCheck.bind(this);
+    this.displaySaves = this.displaySaves.bind(this);
+    this.toggleCardDisplay = this.toggleCardDisplay.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -78,29 +83,55 @@ class Creature extends Component {
       return `${subArr[0].charAt(0).toUpperCase()+subArr[0].slice(1)} +${subArr[1]} `
     }).join(', ')
   }
+  savesCheck(){
+    return this.props.creature.charisma_save || this.props.creature.constitution_save || this.props.creature.dexterity_save || this.props.creature.intelligence_save || this.props.creature.strength_save || this.props.creature.wisdom_save;
+  }
+  displaySaves(){
+    let savesObj = {
+      STR: 'strength_save',
+      DEX: 'dexterity_save',
+      CON: 'constitution_save',
+      INT: 'intelligence_save',
+      WIS: 'wisdom_save',
+      CHA: 'charisma_save'
+    }
+    Object.keys(savesObj).forEach((saveAbbr)=>{
+      this.props.creature[savesObj[saveAbbr]] ? savesObj[saveAbbr] = this.props.creature[savesObj[saveAbbr]] : delete savesObj[saveAbbr];
+    })
+    return this.displaySkills(savesObj);
+  }
+  toggleCardDisplay(){
+    let newDisplay = (this.state.cardDisplay === 'none'? 'flex': 'none');
+    console.log(newDisplay);
+    this.setState({cardDisplay: newDisplay});
+  }
   render() { 
     return (
-      <li className='list-group-item'>
+      <li className='list-group-item' onClick={()=>{this.toggleCardDisplay()}}>
         <Row>
           <AttributeDisplay title="Name" value={this.props.creature.name}/>
           <AttributeDisplay title="CR" value={this.props.creature.challenge_rating}/>
           <AttributeDisplay title="Type" value={this.props.creature.type}/>
         </Row>
-        <Card>
+        <Card style={{display: this.state.cardDisplay}}>
           <Card.Body>
             <Container>
               <Row>
                 <Card.Title>
                   <h4>{this.props.creature.name}</h4>
                 </Card.Title>
-                <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}</p>
+                <Col>
+                <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}<br/>
+                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}</p>
+                <hr className='divider'/>
+                </Col>
               </Row>
               <Row>
               <Col>
-                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}<br/>
                 <label>Armor Class:</label> {this.props.creature.armor_class}<br/>
+                <label>Hit Points:</label> {this.props.creature.hit_points + ' (' + this.props.creature.hit_dice + ')'}<br/>
                 <label>Speed:</label> {this.displaySpeed()}
-                <Table>
+                <Table responsive>
                   <thead>
                     <tr>
                       <th>STR</th>
@@ -122,9 +153,34 @@ class Creature extends Component {
                     </tr>
                   </tbody>
                 </Table>
-                { this.props.creature.skills.length &&
+                { this.savesCheck() &&
+                  <div>
+                    <label>Saving Throws:</label> {this.displaySaves()}
+                  </div>
+                }
+                { Object.keys(this.props.creature.skills).length > 0 &&
                   <div>
                     <label>Skills:</label> {this.displaySkills(this.props.creature.skills)}
+                  </div>
+                }
+                { this.props.creature.condition_immunities &&
+                  <div>
+                    <label>Condition Immunities:</label> {this.props.creature.condition_immunities}
+                  </div>
+                }
+                { this.props.creature.damage_immunities &&
+                  <div>
+                    <label>Damage Immunities:</label> {this.props.creature.damage_immunities}
+                  </div>
+                }
+                { this.props.creature.damage_resistances &&
+                  <div>
+                    <label>Damage Resistances:</label> {this.props.creature.damage_resistances}
+                  </div>
+                }
+                { this.props.creature.damage_vulnerabilities &&
+                  <div>
+                    <label>Damage Vulnerabilities:</label> {this.props.creature.damage_vulnerabilities}
                   </div>
                 }
                 { this.props.creature.senses &&
@@ -172,6 +228,7 @@ class Creature extends Component {
                     Legendary Actions
                     <hr/>
                   </h5>
+                  <p>{this.props.creature.legendary_desc}</p>
                   {this.displayAbilities(this.props.creature.legendary_actions)}
                 </div>
                 }
