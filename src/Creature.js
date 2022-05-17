@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Card, Table } from 'react-bootstrap';
 import AttributeDisplay from './AttributeDisplay';
 import './Creature.css';
-var challengeRatingData = require('./CRData');
+var {challengeRatingData} = require('./CRData');
 
 class Creature extends Component {
   constructor(){
