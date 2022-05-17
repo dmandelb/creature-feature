@@ -131,7 +131,7 @@ class Creature extends Component {
                 <label>Armor Class:</label> {this.props.creature.armor_class}<br/>
                 <label>Hit Points:</label> {this.props.creature.hit_points + ' (' + this.props.creature.hit_dice + ')'}<br/>
                 <label>Speed:</label> {this.displaySpeed()}
-                <Table>
+                <Table responsive>
                   <thead>
                     <tr>
                       <th>STR</th>
