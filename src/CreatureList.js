@@ -55,7 +55,7 @@ class CreatureList extends Component {
         "condition_immunities": "charmed, frightened",
         "senses": "passive Perception 12",
         "languages": "unsure, it doesn't seem to respond to anything",
-        "challenge_rating": "-1",
+        "challenge_rating": "0",
         "actions": [
             {
                 "attack_bonus": 4,
