@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Table, ListGroupItem } from 'react-bootstrap';
-import AttributeDisplay from './AttributeDisplay';
 import './Creature.css';
 var {challengeRatingData} = require('./CRData');
 
