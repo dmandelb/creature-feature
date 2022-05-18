@@ -153,11 +153,12 @@ class CreatureList extends Component {
         </header>
         <Filter applyFilters={this.applyFilters} currentFilters={this.state.filters}/>
         <ListGroup id='creatureList' className='container'>
-          <ListGroupItem id='sticky'>
+          <ListGroupItem id='list-head'>
             <div className='row'>
-              <span className='col-sm font-weight-bold text-center'>Name</span>
-              <span className='col-sm font-weight-bold text-center'>CR</span>
-              <span className='col-sm font-weight-bold text-center'>Type</span>
+              <span className='col-sm-4 font-weight-bold text-center'>Name</span>
+              <span className='col-sm-3 font-weight-bold text-center'>CR</span>
+              <span className='col-sm-4 font-weight-bold text-center'>Type</span>
+              <span className='col-sm-1'>+/-</span>
             </div>
           </ListGroupItem>
           {this.state.creatures.length > 0? this.filterCreatures().map((creature, index)=> <Creature indexNum={`row${index % 3}`} key={creature.slug} creature={creature} />) : this.loading }

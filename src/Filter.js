@@ -88,7 +88,7 @@ class Filter extends Component {
               {this.createChallengeRatingOptionList()}
             </Form.Select>
           </Form.Group>
-          <Button type="submit">Apply Filters</Button>
+          <Button variant="dark" type="submit">Apply Filters</Button>
         </Form>
       </Container>
     );
