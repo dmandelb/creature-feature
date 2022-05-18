@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Table } from 'react-bootstrap';
+import { Container, Row, Col, Card, Table, ListGroupItem } from 'react-bootstrap';
 import AttributeDisplay from './AttributeDisplay';
 import './Creature.css';
 var {challengeRatingData} = require('./CRData');
@@ -72,7 +72,7 @@ class Creature extends Component {
   }
   render() { 
     return (
-      <li className='list-group-item' onClick={()=>{this.toggleCardDisplay()}}>
+      <ListGroupItem className={this.props.indexNum} onClick={()=>{this.toggleCardDisplay()}}>
         <Row>
           <AttributeDisplay title="Name" value={this.props.creature.name}/>
           <AttributeDisplay title="CR" value={this.props.creature.challenge_rating}/>
@@ -203,7 +203,7 @@ class Creature extends Component {
             </Container>
           </Card.Body>
         </Card>
-        </li>
+        </ListGroupItem>
         
     );
   }

@@ -19,8 +19,20 @@ h1.title {
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+.row0{
+  background-color: #fff;
+}
+.row1{
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.row2{
+  background-color: rgba(0, 0, 0, 0.3);
+}
 @media only screen and (max-width: 382px){
   #sticky{
     top: 8rem;
   }
 }
+/* @media (prefers-color-scheme: dark){
+  
+} */
