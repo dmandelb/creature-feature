@@ -11,7 +11,7 @@ header{
 h1.title {
   color: #ff0000;
   font-size: 3rem;
-  line-height: 1;
+  line-height: 1rem;
   padding: 1rem 1rem;
   margin: 0;
 }
