@@ -159,7 +159,7 @@ class CreatureList extends Component {
               <span className='col-sm-4 font-weight-bold text-center'>Name</span>
               <span className='col-sm-3 font-weight-bold text-center'>CR</span>
               <span className='col-sm-4 font-weight-bold text-center'>Type</span>
-              <span className='col-sm-1'>+/-</span>
+              <span className='col-sm-1 text-center'>+/-</span>
             </div>
           </ListGroupItem>
           {this.state.creatures.length > 0? this.filterCreatures().map((creature, index)=> <Creature indexNum={`row${index % 3}`} key={creature.slug} creature={creature} />) : this.loading }
