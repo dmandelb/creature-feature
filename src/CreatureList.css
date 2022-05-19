@@ -2,7 +2,7 @@ html, body {
   background-color: #969696;
 }
 header{
-  background-color: #000;
+  background-color: #2e2d2d;
   position: fixed;
   top: 0;
   width: 100%;
@@ -14,6 +14,10 @@ h1.title {
   line-height: 1;
   padding: 1rem 1rem;
   margin: 0;
+}
+#logo {
+  height: 3rem;
+  margin: 0 1rem 0 .5rem;
 }
 #list-head{
   position: sticky;
@@ -42,6 +46,3 @@ h1.title {
     top: 8rem;
   }
 }
-/* @media (prefers-color-scheme: dark){
-  
-} */
