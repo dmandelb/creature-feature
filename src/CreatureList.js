@@ -4,6 +4,7 @@ import './CreatureList.css';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import Creature from './Creature';
 import Filter from './Filter';
+import logo from './CreatureFeatureLogo.png';
 
 class CreatureList extends Component {
   constructor(){
@@ -149,7 +150,7 @@ class CreatureList extends Component {
     return (
       <div>
         <header>
-        <h1 className='title'>Creature Feature</h1>
+        <h1 className='title'><img src={logo} id='logo' alt='silhouette of a black 20-sided die with red teeth' /><span id="title-text">Creature Feature</span></h1>
         </header>
         <Filter applyFilters={this.applyFilters} currentFilters={this.state.filters}/>
         <ListGroup id='creatureList' className='container'>
