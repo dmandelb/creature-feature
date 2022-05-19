@@ -5,3 +5,7 @@
 .btn.btn-dark {
   margin-top: 1rem;
 }
+.filter-select {
+  width: 10rem;
+  background-color: #e6e6e6;
+}

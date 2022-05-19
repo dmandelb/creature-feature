@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Row } from 'react-bootstrap';
 import './Filter.css';
 var {challengeRatings} = require('./CRData');
 
@@ -42,9 +42,10 @@ class Filter extends Component {
     return (
       <Container id='filters'>
         <Form className="filterForm" onSubmit={this.handleSubmit}>
-          <Form.Group>
+          <Row>
+          <Form.Group className='col-6 col-sm'>
             <Form.Label htmlFor="type">Creature Type</Form.Label>
-            <Form.Select name="type" aria-label='Select Creature Type' onChange={this.handleFilterSet}>
+            <Form.Select className='filter-select' name="type" aria-label='Select Creature Type' onChange={this.handleFilterSet}>
               <option value=''>All Types</option>
               <option value="aberration">Aberration</option>
               <option value="beast">Beast</option>
@@ -62,9 +63,9 @@ class Filter extends Component {
               <option value="undead">Undead</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className='col-6 col-sm'>
             <Form.Label htmlFor="size">Size</Form.Label>
-            <Form.Select name="size" aria-label='Select Size' onChange={this.handleFilterSet}>
+            <Form.Select className='filter-select' name="size" aria-label='Select Size' onChange={this.handleFilterSet}>
               <option value=''>All Sizes</option>
               <option value='Tiny'>Tiny</option>
               <option value='Small'>Small</option>
@@ -74,20 +75,21 @@ class Filter extends Component {
               <option value='Gargantuan'>Gargantuan</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className='col-6 col-sm'>
             <Form.Label htmlFor="challenge_rating_minimum">CR Minimum</Form.Label>
-            <Form.Select name="challenge_rating_minimum" aria-label="Select Minimum CR" onChange={this.handleFilterSet}>
+            <Form.Select className='filter-select' name="challenge_rating_minimum" aria-label="Select Minimum CR" onChange={this.handleFilterSet}>
               <option value=''>No Minimum</option>
               {this.createChallengeRatingOptionList()}
             </Form.Select>
           </Form.Group>
-          <Form.Group>
+          <Form.Group className='col-6 col-sm'>
             <Form.Label htmlFor="challenge_rating_maximum">CR Maximum</Form.Label>
-            <Form.Select name="challenge_rating_maximum" aria-label="Select Maximum CR" onChange={this.handleFilterSet}>
+            <Form.Select className='filter-select' name="challenge_rating_maximum" aria-label="Select Maximum CR" onChange={this.handleFilterSet}>
               <option value=''>No Maximum</option>
               {this.createChallengeRatingOptionList()}
             </Form.Select>
           </Form.Group>
+          </Row>
           <Button variant="dark" type="submit">Apply Filters</Button>
         </Form>
       </Container>
