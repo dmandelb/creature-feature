@@ -41,8 +41,8 @@ h1.title {
 .row2{
   background-color: #b3b3b3;
 }
-@media only screen and (max-width: 382px){
-  #sticky{
-    top: 8rem;
+@media (max-width: 456px){
+  #title-text {
+    display: none;
   }
 }

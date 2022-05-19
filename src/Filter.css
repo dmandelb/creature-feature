@@ -5,8 +5,3 @@
 .btn.btn-dark {
   margin-top: 1rem;
 }
-@media only screen and (max-width: 382px){
-  #filters{
-    margin-top: 9rem;
-  }
-}
