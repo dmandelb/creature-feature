@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Container, Form, Button, Row } from 'react-bootstrap';
 import './Filter.css';
-var {challengeRatings} = require('./CRData');
+var {challengeRatings} = require('./CreatureData');
 
 class Filter extends Component {
   constructor(){

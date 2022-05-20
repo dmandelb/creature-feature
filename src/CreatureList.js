@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import Creature from './Creature';
 import Filter from './Filter';
 import logo from './CreatureFeatureLogo.png';
-var {tumbeast} = require('./CRData');
+var {tumbeast} = require('./CreatureData');
 
 class CreatureList extends Component {
   constructor(){

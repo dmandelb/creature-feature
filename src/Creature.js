@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Table, ListGroupItem } from 'react-bootstrap';
 import './Creature.css';
-var {challengeRatingData} = require('./CRData');
+var {challengeRatingData} = require('./CreatureData');
 
 class Creature extends Component {
   constructor(){
