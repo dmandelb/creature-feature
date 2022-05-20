@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Table } from 'react-bootstrap';
-import AttributeDisplay from './AttributeDisplay';
+import { Container, Row, Col, Card, Table, ListGroupItem } from 'react-bootstrap';
 import './Creature.css';
-var {challengeRatingData} = require('./CRData');
+var {challengeRatingData} = require('./CreatureData');
 
 class Creature extends Component {
   constructor(){
@@ -17,6 +16,7 @@ class Creature extends Component {
     this.savesCheck = this.savesCheck.bind(this);
     this.displaySaves = this.displaySaves.bind(this);
     this.toggleCardDisplay = this.toggleCardDisplay.bind(this);
+    this.renderExpandOrCollapse = this.renderExpandOrCollapse.bind(this);
   }
   displayAbilities(abilitiesArray){
     return abilitiesArray.map((ability, index) =>{
@@ -67,16 +67,27 @@ class Creature extends Component {
   }
   toggleCardDisplay(){
     let newDisplay = (this.state.cardDisplay === 'none'? 'flex': 'none');
-    console.log(newDisplay);
     this.setState({cardDisplay: newDisplay});
+  }
+  renderExpandOrCollapse(){
+    return (this.state.cardDisplay === 'none'? '+': '-')
   }
   render() { 
     return (
-      <li className='list-group-item' onClick={()=>{this.toggleCardDisplay()}}>
+      <ListGroupItem className={this.props.indexNum} onClick={()=>{this.toggleCardDisplay()}}>
         <Row>
-          <AttributeDisplay title="Name" value={this.props.creature.name}/>
-          <AttributeDisplay title="CR" value={this.props.creature.challenge_rating}/>
-          <AttributeDisplay title="Type" value={this.props.creature.type}/>
+        <div className="col-sm-4 text-center">
+          {this.props.creature.name}
+        </div>
+        <div className="col-sm-3 text-center">
+          {this.props.creature.challenge_rating}
+        </div>
+        <div className="col-sm-4 text-center">
+          {this.props.creature.type}
+        </div>
+        <div className='col-sm-1 text-center expand'>
+          {this.renderExpandOrCollapse()}
+        </div>
         </Row>
         <Card style={{display: this.state.cardDisplay}}>
           <Card.Body>
@@ -203,7 +214,7 @@ class Creature extends Component {
             </Container>
           </Card.Body>
         </Card>
-        </li>
+        </ListGroupItem>
         
     );
   }

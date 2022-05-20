@@ -1,26 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+html, body {
+  background-color: #969696;
+}
 header{
-  background-color: #000;
+  background-color: #2e2d2d;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 10;
 }
 h1.title {
-  color: #ff0000;
+  color: #b70000;
   font-size: 3rem;
-  line-height: 1;
+  font-family: 'Koulen', 'Arial', 'sans-serif';
+  line-height: 1rem;
   padding: 1rem 1rem;
   margin: 0;
 }
-#sticky{
+#logo {
+  height: 3rem;
+  margin: 0 1rem 0 .5rem;
+}
+#list-head{
   position: sticky;
   top: 5rem;
   z-index: 10;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 2px solid #000;
 }
-@media only screen and (max-width: 382px){
-  #sticky{
-    top: 8rem;
+.list-group-item .row {
+  font-size: 1.2rem;
+}
+.row0{
+  background-color: #fff;
+}
+.row1{
+  background-color: #e6e6e6;
+}
+.row2{
+  background-color: #b3b3b3;
+}
+@media (max-width: 456px){
+  #title-text {
+    display: none;
   }
 }

@@ -4,6 +4,8 @@ import './CreatureList.css';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 import Creature from './Creature';
 import Filter from './Filter';
+import logo from './CreatureFeatureLogo.png';
+var {tumbeast} = require('./CreatureData');
 
 class CreatureList extends Component {
   constructor(){
@@ -16,73 +18,7 @@ class CreatureList extends Component {
         challenge_rating_maximum: null,
         size: null,
         type: null
-      },
-      tumbeast: [{
-        "slug": "tumbeast",
-        "name": "Tumbeast",
-        "size": "Knee-height",
-        "type": "hellsite (affectionate) dweller",
-        "subtype": "",
-        "group": null,
-        "alignment": "chaotic hungry",
-        "armor_class": 10,
-        "armor_desc": "oatmeal",
-        "hit_points": 503,
-        "hit_dice": "118d6+90",
-        "speed": {
-            "walk": 50,
-            "climb": 50,
-        },
-        "strength": 12,
-        "dexterity": 14,
-        "constitution": 8,
-        "intelligence": 1,
-        "wisdom": 12,
-        "charisma": 16,
-        "strength_save": null,
-        "dexterity_save": null,
-        "constitution_save": null,
-        "intelligence_save": null,
-        "wisdom_save": null,
-        "charisma_save": null,
-        "perception": null,
-        "skills": {
-            "acrobatics": 4
-        },
-        "damage_vulnerabilities": "emotional",
-        "damage_resistances": "",
-        "damage_immunities": "psychic",
-        "condition_immunities": "charmed, frightened",
-        "senses": "passive Perception 12",
-        "languages": "unsure, it doesn't seem to respond to anything",
-        "challenge_rating": "0",
-        "actions": [
-            {
-                "attack_bonus": 4,
-                "damage_dice": "3d8+6",
-                "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 4 (1d4 + 2) piercing damage.",
-                "name": "Gnawing"
-            },
-            {
-                "desc": "When Tumbeasts are not fed regularly, they band together and openly rebel in the server rooms which they call home, declaring anything they can get their tiny little paws on as viable food.",
-                "name": "Mutiny"
-            }
-        ],
-        "reactions": "",
-        "legendary_desc": "",
-        "legendary_actions": "",
-        "special_abilities": [
-            {
-                "desc": "The elusive Tumbeast only shows up when there are no other results. Your filters found nothing.",
-                "name": "Nothing Here"
-            }
-        ],
-        "spell_list": [],
-        "img_main": null,
-        "document__slug": "",
-        "document__title": "",
-        "document__license_url": ""
-    }]
+      }
     }
     this.applyFilters = this.applyFilters.bind(this);
     this.filterCreatures = this.filterCreatures.bind(this);
@@ -129,7 +65,7 @@ class CreatureList extends Component {
     } // apply only each active filter
     
     // return filteredCreatures; //create tumbeast for 0 results
-    return(filteredCreatures.length ? filteredCreatures : this.state.tumbeast) ;
+    return(filteredCreatures.length ? filteredCreatures : tumbeast) ;
   }
 
    componentDidMount(){
@@ -149,18 +85,19 @@ class CreatureList extends Component {
     return (
       <div>
         <header>
-        <h1 className='title'>Creature Feature</h1>
+        <h1 className='title'><img src={logo} id='logo' alt='silhouette of a black 20-sided die with red teeth' /><span id="title-text">Creature Feature</span></h1>
         </header>
         <Filter applyFilters={this.applyFilters} currentFilters={this.state.filters}/>
         <ListGroup id='creatureList' className='container'>
-          <ListGroupItem id='sticky'>
+          <ListGroupItem id='list-head'>
             <div className='row'>
-              <span className='col-sm font-weight-bold text-center'>Name</span>
-              <span className='col-sm font-weight-bold text-center'>CR</span>
-              <span className='col-sm font-weight-bold text-center'>Type</span>
+              <span className='col-sm-4 font-weight-bold text-center'>Name</span>
+              <span className='col-sm-3 font-weight-bold text-center'>CR</span>
+              <span className='col-sm-4 font-weight-bold text-center'>Type</span>
+              <span className='col-sm-1 text-center'>+/-</span>
             </div>
           </ListGroupItem>
-          {this.state.creatures.length > 0? this.filterCreatures().map((creature)=> <Creature key={creature.slug} creature={creature} />) : this.loading }
+          {this.state.creatures.length > 0? this.filterCreatures().map((creature, index)=> <Creature indexNum={`row${index % 3}`} key={creature.slug} creature={creature} />) : this.loading }
         </ListGroup>
       </div>
     );
