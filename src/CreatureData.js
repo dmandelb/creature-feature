@@ -1,5 +1,5 @@
 var challengeRatingData = {
-  '0': {proficiency: '+2', xp: '0'},
+  '0': {proficiency: '+2', xp: '10'},
   '1/8': {proficiency: '+2', xp: '25'},
   '1/4': {proficiency: '+2', xp: '50'},
   '1/2': {proficiency: '+2', xp: '100'},

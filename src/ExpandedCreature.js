@@ -12,6 +12,7 @@ class ExpandedCreature extends Component {
     this.displaySkills = this.displaySkills.bind(this);
     this.savesCheck = this.savesCheck.bind(this);
     this.displaySaves = this.displaySaves.bind(this);
+    this.displayXP = this.displayXP.bind(this);
   }
 
   displayAbilities(abilitiesArray){
@@ -62,6 +63,13 @@ class ExpandedCreature extends Component {
     return this.displaySkills(savesObj);
   }
 
+  displayXP(){
+    if (this.props.creature.challenge_rating === '0' && this.props.creature.actions === '' && this.props.creature.reactions === '') {
+      return '0';
+    }
+    return challengeRatingData[this.props.creature.challenge_rating].xp;
+  }
+
   render() { 
     return (
       <Card>
@@ -73,7 +81,7 @@ class ExpandedCreature extends Component {
                 </Card.Title>
                 <Col>
                 <p>{this.props.creature.size} {this.props.creature.type}, {this.props.creature.alignment}<br/>
-                <label>Challenge Rating:</label> {this.props.creature.challenge_rating}</p>
+                <label>Challenge Rating:</label> {`${this.props.creature.challenge_rating} (${this.displayXP()} XP)`}</p>
                 <hr className='divider'/>
                 </Col>
               </Row>
