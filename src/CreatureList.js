@@ -59,8 +59,8 @@ class CreatureList extends Component {
     let filteredCreatures = [...this.state.creatures]; // create a copy of creatures in state so as to not require a new API call every time filters are changed
     let activeFilters = Object.entries({...this.state.filters}).filter(singleFilter => singleFilter[1] !== null); // determine which filters are active so we can apply only active filters
     if (activeFilters.length > 0) {
-      for (let [singleActiveFilter, filterValue] of activeFilters) {
-        filteredCreatures = this.filterByCriteria(singleActiveFilter, filteredCreatures);
+      for (let singleActiveFilter of activeFilters) {
+        filteredCreatures = this.filterByCriteria(singleActiveFilter[0], filteredCreatures);
       }
     } // apply only each active filter
     
