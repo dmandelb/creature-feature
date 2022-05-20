@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
 html, body {
   background-color: #969696;
 }
@@ -9,8 +11,9 @@ header{
   z-index: 10;
 }
 h1.title {
-  color: #ff0000;
+  color: #b70000;
   font-size: 3rem;
+  font-family: 'Koulen', 'Arial', 'sans-serif';
   line-height: 1rem;
   padding: 1rem 1rem;
   margin: 0;
